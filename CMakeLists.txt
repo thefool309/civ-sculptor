@@ -14,9 +14,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(pybind11)
 
-pybind11_add_module(bindings src/bindings.cpp)
+pybind11_add_module(civ_module src/services/Civ_Module.cpp src/services/Civilization.cpp)
 
-set_target_properties(bindings PROPERTIES
+set_target_properties(civ_module PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"  # for Windows .pyd
 )
