@@ -7,7 +7,7 @@ import sys
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-build_dir = os.path.join(script_dir, "..", "build", "build", "Debug")
+build_dir = os.path.join(script_dir, "..", "build")
 build_dir = os.path.abspath(build_dir)
 
 sys.path.append(build_dir)
