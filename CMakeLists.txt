@@ -14,4 +14,4 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(pybind11)
 
-pybind11_add_module(mymodule src/bindings.cpp)
+pybind11_add_module(bindings src/bindings.cpp)
