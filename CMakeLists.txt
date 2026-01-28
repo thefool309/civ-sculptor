@@ -14,7 +14,11 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(pybind11)
 
-pybind11_add_module(civ_module src/services/Civ_Module.cpp src/services/Civilization.cpp)
+file(GLOB SOURCES "src/services/*.cpp")
+
+file(GLOB INCLUDE "src/include/*.h")
+
+pybind11_add_module(civ_module ${SOURCES} ${INCLUDE})
 
 set_target_properties(civ_module PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
