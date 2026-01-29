@@ -1,9 +1,11 @@
 #include <string>
 #include <unordered_map>
+#include "RandomEngine.h"
 
 enum ResourceType {
 	gold = 0,
-
+	
+	COUNT_RT
 };
 /// <summary>
 ///	An enum representing domains of decision.
@@ -108,14 +110,16 @@ class Civilization {
 	long research_points = 0;
 	CulturalSummary cultural_summ;
 	std::unordered_map<int, CulturalTrait> trait_map;
+	RandomEngine rng;
+	CivSeed seed;
 
 public:
-	Civilization(const std::string& _civID, const std::string& _name) : civID(_civID), name(_name) {
+	Civilization(const std::string& _civID, const std::string& _name, CivSeed _seed) : civID(_civID), name(_name), seed(_seed), rng(_seed.rng_seed) {
 		resource_map.insert(std::pair<ResourceType, Resources>(ResourceType::gold, Resources(ResourceType::gold, 100)));
 	}
 
-	Civilization(const std::string& _civID, const std::string& _name, const unsigned int& _pop, const std::unordered_map<ResourceType, Resources>& _resources)
-		: civID(_civID), name(_name), population(_pop), resource_map(_resources) {
+	Civilization(const std::string& _civID, const std::string& _name, CivSeed _seed, const unsigned int& _pop, const std::unordered_map<ResourceType, Resources>& _resources)
+		: civID(_civID), name(_name), seed(_seed), rng(_seed.rng_seed), population(_pop), resource_map(_resources) {
 	}
 
 	std::string get_name() {
@@ -134,15 +138,6 @@ public:
 		return resource_map;
 	}
 
-	void add_resource(ResourceType type, unsigned int amount) {
-		auto it = resource_map.find(type);
-		
-		if (it != resource_map.end()) {
-			it->second.amount += amount;
-		}
-		else {
-			resource_map.emplace(type, Resources(type, amount));
-		}
-	}
+	void add_resource(ResourceType type, unsigned int amount);
 
 };
