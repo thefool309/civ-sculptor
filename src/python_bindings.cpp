@@ -1,4 +1,6 @@
 #include <pybind11/pybind11.h>
+#include "include/World.h"
+#include "include/Civilization.h"
 
 namespace py = pybind11;
 
