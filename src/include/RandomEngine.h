@@ -25,7 +25,7 @@ public:
 
 	float generate_uniform_float(float min = 0.0, float max = 1.0);
 
-	float geneerate_uniform_int(int min, int max);
+	float generate_uniform_int(int min, int max);
 
 	template<typename Enum>
 	Enum generateRandomEnum(int count);

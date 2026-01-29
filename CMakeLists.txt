@@ -39,9 +39,9 @@ set_target_properties(civ_module PROPERTIES
 # -----------------------------
 # Standalone test executable
 # -----------------------------
-# add_executable(test_traits tests/test_traits.cpp)
-# target_link_libraries(test_traits PRIVATE civ_core)
-# target_include_directories(test_traits PRIVATE "src/include")
-# set_target_properties(test_traits PROPERTIES
-    # RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
-# )
+add_executable(run_tests tests/test.cpp)
+target_link_libraries(run_tests PRIVATE civ_core)
+target_include_directories(run_tests PRIVATE "src/include")
+set_target_properties(run_tests PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
+)
