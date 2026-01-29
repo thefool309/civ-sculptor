@@ -62,3 +62,4 @@ cmake --build . --config Debug
 ---
 ## sources
 [pybind11 reference](https://pybind11.readthedocs.io/en/stable/index.html)
+[cmake article on glob](https://www.w3tutorials.net/blog/how-to-use-all-c-files-in-a-directory-with-the-cmake-build-system/)
