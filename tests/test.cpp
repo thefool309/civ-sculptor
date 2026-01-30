@@ -61,7 +61,16 @@ void Tests::TestWorldGetSeed() {
 void Tests::TestWorldGenCivSeed() {
 	/*std::cout << "\nGenerateCivSeed Russia Hash : " << world.GenerateCivSeed("Russia").rng_seed << '\n';*/
 	ASSERT_TRUE(sim.world.GenerateCivSeed("Russia").name == "Russia");
-	ASSERT_TRUE(sim.world.GenerateCivSeed("Russia").rng_seed == 11649118993674644964); // expected rng_seed for russia with the given world seed
+	ASSERT_TRUE(sim.world.GenerateCivSeed("Russia").rng_seed == 11649118993674644964); // expected rng_seed for russia with the default test world seed
+}
+
+void Tests::TestSimLoop() {
+
+	ASSERT_TRUE(sim.SimLoop(10) == 10); // this returns 10, because the first tick starts 0 this could be a year, a month, a week, an hour or any other measure of time
+	ASSERT_TRUE(sim.SimLoop(5) == 15);
+	ASSERT_TRUE(sim.SimLoop(5) == 20);	// tests persistance of time between runs of loop
+	/*ASSERT_TRUE(sim.SimLoop(1000) == 1020);*/ //because we're starting at 20
+	// with the way we've built the time system we could run x amount of moves at a time to possibly create a "fast_forward" or "slow_down" command
 }
 
 void Tests::TestCivMakeTurn() {
@@ -75,5 +84,6 @@ void Tests::RunTests() {
 	RUN_TEST(TestWorldGetSeed, true);
 	RUN_TEST(TestWorldGenCivSeed, true); // should only be marked active if on default seed
 	RUN_TEST(TestCivMakeTurn, true);
+	RUN_TEST(TestSimLoop, true);
 	SUMMARY();
 }

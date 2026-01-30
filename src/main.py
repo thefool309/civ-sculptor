@@ -25,9 +25,8 @@ console = Console()
 
 pretty.install()
 
-def do_slep():
-
-    time.sleep(5)
+def do_slep(numbieSlepSecs = 5):
+    time.sleep(numbieSlepSecs)
 
 
 def main():
@@ -43,10 +42,16 @@ def main():
 
     # with console.status("Sleeping...", spinner="bouncingBar"):
     #     do_slep()
-    
+    sim = civ_module.SimulationApi(123456, "Testonia")
     if prompt.Confirm.ask("[italic cyan] start sim?"):
         with console.screen():
-            civ_module.startSimulation()
+            
+            sim.startSimulation(3)
+            
+
+            do_slep()
+        with console.screen():
+            sim.startSimulation(3)
 
             do_slep()
 

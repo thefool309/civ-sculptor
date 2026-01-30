@@ -56,6 +56,11 @@ public:
 	/// </summary>
 	void TestWorldGenCivSeed();
 
+	/// <summary>
+	/// Test how the SimTime behaves in relation to running the SimLoop and ensure persistance between calls to SimLoop
+	/// </summary>
+	void TestSimLoop();
+
 	void TestCivMakeTurn();
 
 	/// <summary>
