@@ -3,6 +3,7 @@
 #include "World.h"
 #include "CivFactory.h"
 #include "Utils.h"
+#include "Map.h"
 /// <summary>
 /// Our "God object" or the object that controls all objects beneath it. This is kind of the glue that puts our puzzle together.
 /// 
@@ -14,8 +15,12 @@ private:
 public:
 	World world;
 	std::unordered_map<std::string, Civilization> civs;
+	RandomEngine globalRandEng;
+	Map worldMap;
 	
-	Simulation(WorldSeed _seed) : world(_seed) {}
+	Simulation(WorldSeed _seed) : world(_seed), globalRandEng(_seed.rng_seed) {
+		worldMap.generateMapTiles(globalRandEng);
+	}
 
 	void Generate10Civs();
 

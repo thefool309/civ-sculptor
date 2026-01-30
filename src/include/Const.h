@@ -3,8 +3,11 @@
 
 class Const {
 public:
-	static constexpr uint64_t FNV_offset_basis = 14695981039346656037;
-	static constexpr uint64_t FNV_prime = 1099511628211;
+	static constexpr uint64_t FNV_offset_basis = 14695981039346656037ULL;
+	static constexpr uint64_t FNV_prime = 1099511628211ULL;
+
+    static constexpr int MAP_WIDTH = 100;
+    static constexpr int MAP_HEIGHT = 100;
 
     static constexpr const char* ResourceTypeNames[] = {
     "Food",

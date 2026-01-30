@@ -42,17 +42,19 @@ struct ResourceDeposit {
                   uint64_t _amount = 30,
                   ResourceType _extractionResource = ResourceType::Food,
                   int _extractionCost = 5, bool _renewable = true,
-                  int regenRate = 5)
+                  int _regenRate = 5)
       : resources(_resourceType, _amount),
         extractionResource(_extractionResource),
-        extractionCost(_extractionCost) {}
+        extractionCost(_extractionCost), renewable(_renewable),
+        regenRate(_regenRate) {}
 
   ResourceDeposit(Resources _resources,
                   ResourceType _extractionResource = ResourceType::Food,
                   int _extractionCost = 5, bool _renewable = true,
-                  int regenRate = 5)
+                  int _regenRate = 5)
       : resources(_resources), extractionResource(_extractionResource),
-        extractionCost(_extractionCost) {}
+        extractionCost(_extractionCost), renewable(_renewable),
+        regenRate(_regenRate) {}
 };
 
 struct Debt {
