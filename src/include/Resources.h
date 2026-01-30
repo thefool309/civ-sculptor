@@ -1,5 +1,6 @@
 #pragma once
 #include "Const.h"
+#include <string>
 /// <summary>
 /// ResourceType is an enumeration class that defines various types of resources, 
 /// such as Food, Water, and Metal, using an underlying type of uint8_t to represent them efficiently.
@@ -23,12 +24,12 @@ static_assert(
 
 
 struct Resources {
-	ResourceType type;
-	uint64_t amount;
+    ResourceType type;
+    uint64_t amount;
 
-	Resources(ResourceType _type, uint64_t _amount) : type(_type), amount(_amount) {
-		
-	}
+    Resources(ResourceType _type, uint64_t _amount) : type(_type), amount(_amount) {
+        
+    }
 };
 
 struct ResourceDeposit {
@@ -43,19 +44,23 @@ struct ResourceDeposit {
 		ResourceType _extractionResource = ResourceType::Food,
 		int _extractionCost = 5,
 		bool _renewable = true,
-		int regenRate = 5)
+		int _regenRate = 5)
 		: resources(_resourceType, _amount),
 		  extractionResource(_extractionResource),
-		  extractionCost(_extractionCost) {}
+		  extractionCost(_extractionCost),
+		  renewable(_renewable), 
+		  regenRate(_regenRate) {}
 
 	ResourceDeposit(Resources _resources,
 		ResourceType _extractionResource = ResourceType::Food,
 		int _extractionCost = 5,
 		bool _renewable = true,
-		int regenRate = 5)
+		int _regenRate = 5)
 		: resources(_resources),
 		  extractionResource(_extractionResource),
-		  extractionCost(_extractionCost) {}
+		  extractionCost(_extractionCost),
+		  renewable(_renewable),
+		  regenRate(_regenRate) {}
 
 	
 };
