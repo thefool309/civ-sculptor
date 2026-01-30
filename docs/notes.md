@@ -1,6 +1,24 @@
 # Notes
+## Technical
+### calculating map neighbors
+```c++
+// (-1,-1) (-1,0) (-1,1)
+// ( 0,-1)  X    ( 0,1)
+// ( 1,-1) ( 1,0) ( 1,1)
+int dx[] = { -1, -1, -1, 0, 0, 1, 1, 1}
+int dy[] = { -1, 0, 1, -1, 1, -1, 0, 1 }
+
+for (int i = 0; i < 8; i++) {
+    nx = x - dx[i]
+    ny = y - dy[i]
+    //position of new neighbor is nx, ny
+}
+
+```
+
 
 ## Mechanics
+
 
 ### Failure Conditions:
 1. **Total Erasure *(failure)***
@@ -61,5 +79,8 @@ cmake --build . --config Debug
 ```
 ---
 ## sources
-[pybind11 reference](https://pybind11.readthedocs.io/en/stable/index.html)
-[cmake article on glob](https://www.w3tutorials.net/blog/how-to-use-all-c-files-in-a-directory-with-the-cmake-build-system/)
+- [pybind11 reference](https://pybind11.readthedocs.io/en/stable/index.html)
+
+- [cmake article on glob](https://www.w3tutorials.net/blog/how-to-use-all-c-files-in-a-directory-with-the-cmake-build-system/)
+
+- [c++ color changing text in cout](https://www.geeksforgeeks.org/cpp/how-to-change-console-color-in-cpp/)

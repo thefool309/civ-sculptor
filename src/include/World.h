@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include "RandomEngine.h"
+#include "SimTime.h"
 
 
 struct WorldSeed {
@@ -16,7 +17,9 @@ public:
 class World {
 	WorldSeed seed;
 public:
+	SimTime time;
 	World(uint64_t _seed, std::string _name) : seed(_seed, _name) {}
+	World(WorldSeed _seed) : seed(_seed) {}
 
 	uint64_t getSeed() const { return seed.rng_seed; }
 	std::string getName() const { return seed.name; }

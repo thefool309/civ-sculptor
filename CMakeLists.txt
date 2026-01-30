@@ -39,7 +39,7 @@ set_target_properties(civ_module PROPERTIES
 # -----------------------------
 # Standalone test executable
 # -----------------------------
-add_executable(run_tests tests/test.cpp)
+add_executable(run_tests "tests/test.cpp" "tests/test.h")
 target_link_libraries(run_tests PRIVATE civ_core)
 target_include_directories(run_tests PRIVATE "src/include")
 set_target_properties(run_tests PROPERTIES
