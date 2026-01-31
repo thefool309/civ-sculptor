@@ -113,7 +113,7 @@ public:
   }
 };
 
-PYBIND11_MODULE(civ_module, m, py::mod_gil_not_used()) {
+PYBIND11_MODULE(civ_module, m) {
   m.doc() = "Module for binding sim to python"; // Optional module docstrin
   py::class_<SimulationApi>(m, "SimulationApi")
       .def(py::init<const uint64_t,
