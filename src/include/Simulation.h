@@ -22,6 +22,10 @@ public:
 		worldMap.generateMapTiles(globalRandEng);
 	}
 
+	void Generate3Civs();
+
+	void Generate5Civs();
+
 	void Generate10Civs();
 
 	SimTick SimLoop(unsigned int _ticksToLoop);
