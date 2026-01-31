@@ -1,4 +1,8 @@
 # civ-sculptor
+
+![GitHub License](https://img.shields.io/github/license/thefool309/civ-sculptor) ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/thefool309/civ-sculptor) ![GitHub last commit](https://img.shields.io/github/last-commit/thefool309/civ-sculptor) ![GitHub Created At](https://img.shields.io/github/created-at/thefool309/civ-sculptor) ![Discord](https://img.shields.io/discord/668848824323801090) ![GitHub top language](https://img.shields.io/github/languages/top/thefool309/civ-sculptor)
+
+
 Civ-Sculptor is a hybrid Python/C++ civilization simulation engine, designed for experimentation, and analysis. The simulation runs core logic in C++ for high performance and low-level control, while exposing a Python API for scripting, logging, machine learning and data visualization integration.
 
 ## Features
