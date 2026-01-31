@@ -17,14 +17,13 @@ void Simulation::Generate3Civs() {
 			break;
 		}
 
-		Utils::SetColor(95);
+		
 		Civilization newCiv = CivFactory::CreateCivilization(seed);
-		Utils::ResetColor();
+		
 		civs.insert(std::pair<std::string, Civilization>(newCiv.get_name(), newCiv));
 
-		Utils::SetColor(96);
+		
 		std::cout << newCiv.get_name() << " created!!!\n";
-		Utils::ResetColor();
 	}
 }
 void Simulation::Generate5Civs() {
@@ -51,14 +50,14 @@ void Simulation::Generate5Civs() {
 			break;
 		}
 
-		Utils::SetColor(95);
+		
 		Civilization newCiv = CivFactory::CreateCivilization(seed);
-		Utils::ResetColor();
+		
 		civs.insert(std::pair<std::string, Civilization>(newCiv.get_name(), newCiv));
 
-		Utils::SetColor(96);
+		
 		std::cout << newCiv.get_name() << " created!!!\n";
-		Utils::ResetColor();
+		
 	}
 }
 /// <summary>
@@ -103,14 +102,10 @@ void Simulation::Generate10Civs() {
 			break;
 		}
 
-		Utils::SetColor(95);
 		Civilization newCiv = CivFactory::CreateCivilization(seed);
-		Utils::ResetColor();
 		civs.insert(std::pair<std::string, Civilization>(newCiv.get_name(), newCiv));
 
-		Utils::SetColor(96);
 		std::cout << newCiv.get_name() << " created!!!\n";
-		Utils::ResetColor();
 	}
 }
 /// <summary>
@@ -125,9 +120,8 @@ SimTick Simulation::SimLoop(unsigned int _ticksToLoop) {
 		for (auto& civ : civs) {	// the civs collection is a map, so it returns a std::pair<std::string, Civilization> the string is the name of the civ
 			civ.second.MakeTurn();	// civ.second is value (Civilization)
 		}
-		Utils::SetColor(97);
+		
 		std::cout << "End of Tick " << world.time.current_tick << '\n';
-		Utils::ResetColor();
 
 		// advance to next tick
 		world.time.advance();

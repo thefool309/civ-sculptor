@@ -1,0 +1,39 @@
+Screen {
+    layout: grid;
+    grid-size: 4 4;
+    grid-rows: 2fr 1fr  1fr 1fr;
+    grid-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
+    grid-gutter: 1;
+}
+
+/* Default buttons */
+.button {
+    color: white;                /* Text color */
+    background: transparent;   /* Button fill color */
+    border: round yellow;        /* Rounded border */
+    padding: 0 0;                /* Top/bottom 0, left/right 2 */
+}
+
+/* Hover effect */
+.button:hover {
+    background: deepskyblue;     /* Fill brightens on hover */
+    color: white;
+}
+
+/* Exit button */
+#exitButton {
+    color: white;
+    background: transparent;      /* Softer red */
+    border: round red;
+}
+
+#exitButton:hover {
+    background: red;             /* Brighter on hover */
+}
+
+/* Static panel */
+#static1 {
+    row-span: 3;
+    column-span: 4;
+    padding: 1;
+}
