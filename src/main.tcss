@@ -1,6 +1,6 @@
 Screen {
     layout: grid;
-    grid-size: 4 4;
+    grid-size: 4 5;
     grid-rows: 2fr 1fr  1fr 1fr;
     grid-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
     grid-gutter: 1;
@@ -16,8 +16,8 @@ Screen {
 
 /* Hover effect */
 .button:hover {
-    background: deepskyblue;     /* Fill brightens on hover */
-    color: white;
+    background: yellow;     /* Fill brightens on hover */
+    color: black;
 }
 
 /* Exit button */
@@ -29,6 +29,33 @@ Screen {
 
 #exitButton:hover {
     background: red;             /* Brighter on hover */
+}
+
+#gen-civs-button3 {
+    border: round skyblue;
+}
+
+#gen-civs-button3:hover {
+    background: lightskyblue;
+    color: black;
+}
+
+#gen-civs-button5 {
+    border: round skyblue;
+}
+
+#gen-civs-button5:hover {
+    background: lightskyblue;
+    color: black;
+}
+
+#gen-civs-button10 {
+    border: round skyblue;
+}
+
+#gen-civs-button10:hover {
+    background: lightskyblue;
+    color: black;
 }
 
 /* Static panel */
