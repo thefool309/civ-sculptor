@@ -46,13 +46,36 @@ public:
 		sim.SimLoop(ticks);
 		setRunningSim(false); // done so toggle running sim off
 	}
-
+	/// <summary>
+	/// Generates 3 civilizataions for the simulation. Asynchronous function using member field std::thread simThread.
+	/// </summary>
 	void generate3Civs() {
-		join();
+		if(simThread.joinable())
+			join(); // join thread if it hasn't been joined already
 		simThread = std::thread([this]() {
 			sim.Generate3Civs();
 			});
 		
+	}
+	/// <summary>
+	/// Generates 5 civilizataions for the simulation. Asynchronous function using member field std::thread simThread.
+	/// </summary>
+	void generate5Civs() {
+		if (simThread.joinable())
+			join();
+		simThread = std::thread([this]() {
+			sim.Generate5Civs();
+			});
+	}
+	/// <summary>
+	/// Generates 10 civilizataions for the simulation. Asynchronous function using member field std::thread simThread.
+	/// </summary>
+	void generate10Civs() {
+		if (simThread.joinable())
+			join();
+		simThread = std::thread([this]() {
+			sim.Generate10Civs();
+			});
 	}
 	/// <summary>
 	///	starts the simulation for `ticks` number of ticks on a seperate thread
@@ -60,7 +83,8 @@ public:
 	/// <param name="ticks"> - the number of ticks to run the simulation for</param>
 	void startSimulationAsync(uint64_t ticks) {
 		if (runningSim) return;
-		join();
+		if(simThread.joinable())
+			join();
 		setRunningSim(true);
 
 
@@ -97,5 +121,7 @@ PYBIND11_MODULE(civ_module, m, py::mod_gil_not_used()) {
 		.def("startSimulationAsync", &SimulationApi::startSimulationAsync, py::arg("ticks"), py::call_guard<py::gil_scoped_release>())
 		.def("poll_log", &SimulationApi::poll_log)
 		.def("generate3Civs", &SimulationApi::generate3Civs)
+		.def("generate5Civs", &SimulationApi::generate5Civs)
+		.def("generate10Civs", &SimulationApi::generate10Civs)
 		.def_property("runningSim", &SimulationApi::getRunningSim, &SimulationApi::setRunningSim);
 }

@@ -1,2 +1,2 @@
 # civ-sculptor
-A machine learning model with the idea of predicting human outcomes on a large scale. 
+A python/c++ project built with the idea of building a civilization simulation that can be run by machine learning models. 
