@@ -32,4 +32,8 @@ public:
 	std::vector<Tile*>& getNeighbors(Tile& tile);
 
 	void generateMapTiles(RandomEngine rng);
+
+	void writeMapToCout();
+
+	void visualizeMapInTextFile(const char* _filepath);
 };

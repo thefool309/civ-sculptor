@@ -35,21 +35,3 @@ void World::ReadWorldSeed(std::string _filepath) {
 	seed.name = name;
 	seed.rng_seed = rng_seed;
 }
-
-CivSeed World::GenerateCivSeed(const std::string& name) {
-	// FNV-1a non cryptographic hashing algorithm
-
-	//uses the name and world
-
-	uint64_t hash = Const::FNV_offset_basis; // the hash starts as the offset basis
-
-	for (auto& c : name) {
-		hash ^= static_cast<uint64_t>(c);
-		hash *= Const::FNV_prime;
-	}
-
-	hash ^= seed.rng_seed; // xor the world seed into it one time to make it deterministic
-	hash *= Const::FNV_prime;
-
-	return CivSeed(hash, name); 
-}

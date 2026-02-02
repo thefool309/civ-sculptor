@@ -20,5 +20,24 @@ public:
     "Nuclear Material"
     };
 
+    static constexpr const char* TerrainTypeNames[] = {
+        "Plains",
+        "Forest",
+        "Hills",
+        "Mountains",
+        "Desert",
+        "Tundra",
+        "Water",
+    };
+
+    static constexpr const char* TerrainTypeSymbols[] = {
+        "P",
+        "F",
+        "H",
+        "M",
+        "D",
+        "T",
+        "W",
+    };
     
 };

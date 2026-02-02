@@ -4,16 +4,16 @@ void Simulation::Generate3Civs() {
 		CivSeed seed = CivSeed(0ULL, "");
 		switch (i + 1) {
 		case 1:
-			seed = world.GenerateCivSeed("Caesar's Legion");
+			seed = CivFactory::GenerateCivSeed("Caesar's Legion", world.getSeed());
 			break;
 		case 2:
-			seed = world.GenerateCivSeed("New California Republic");
+			seed = CivFactory::GenerateCivSeed("New California Republic", world.getSeed());
 			break;
 		case 3:
-			seed = world.GenerateCivSeed("The Children of Atom");
+			seed = CivFactory::GenerateCivSeed("The Children of Atom", world.getSeed());
 			break;
 		default:
-			seed = world.GenerateCivSeed("YOU MESSED UP");
+			seed = CivFactory::GenerateCivSeed("YOU MESSED UP", world.getSeed());
 			break;
 		}
 
@@ -31,22 +31,22 @@ void Simulation::Generate5Civs() {
 		CivSeed seed = CivSeed(0ULL, "");
 		switch (i + 1) {
 		case 1:
-			seed = world.GenerateCivSeed("Caesar's Legion");
+			seed = CivFactory::GenerateCivSeed("Caesar's Legion", world.getSeed());
 			break;
 		case 2:
-			seed = world.GenerateCivSeed("New California Republic");
+			seed = CivFactory::GenerateCivSeed("New California Republic", world.getSeed());
 			break;
 		case 3:
-			seed = world.GenerateCivSeed("The Children of Atom");
+			seed = CivFactory::GenerateCivSeed("The Children of Atom", world.getSeed());
 			break;
 		case 4:
-			seed = world.GenerateCivSeed("Brotherhood of Steel");
+			seed = CivFactory::GenerateCivSeed("Brotherhood of Steel", world.getSeed());
 			break;
 		case 5:
-			seed = world.GenerateCivSeed("Powder Gangers");
+			seed = CivFactory::GenerateCivSeed("Powder Gangers", world.getSeed());
 			break;
 		default:
-			seed = world.GenerateCivSeed("YOU MESSED UP");
+			seed = CivFactory::GenerateCivSeed("YOU MESSED UP", world.getSeed());
 			break;
 		}
 
@@ -68,37 +68,37 @@ void Simulation::Generate10Civs() {
 		CivSeed seed = CivSeed(0ULL, "");
 		switch (i + 1) {
 		case 1:
-			seed = world.GenerateCivSeed("Caesar's Legion");
+			seed = CivFactory::GenerateCivSeed("Caesar's Legion", world.getSeed());
 			break;
 		case 2:
-			seed = world.GenerateCivSeed("New California Republic");
+			seed = CivFactory::GenerateCivSeed("New California Republic", world.getSeed());
 			break;
 		case 3:
-			seed = world.GenerateCivSeed("The Children of Atom");
+			seed = CivFactory::GenerateCivSeed("The Children of Atom", world.getSeed());
 			break;
 		case 4:
-			seed = world.GenerateCivSeed("Brotherhood of Steel");
+			seed = CivFactory::GenerateCivSeed("Brotherhood of Steel", world.getSeed());
 			break;
 		case 5:
-			seed = world.GenerateCivSeed("Powder Gangers");
+			seed = CivFactory::GenerateCivSeed("Powder Gangers", world.getSeed());
 			break;
 		case 6:
-			seed = world.GenerateCivSeed("New Vegas Strip");
+			seed = CivFactory::GenerateCivSeed("New Vegas Strip", world.getSeed());
 			break;
 		case 7:
-			seed = world.GenerateCivSeed("The CommonWealth");
+			seed = CivFactory::GenerateCivSeed("The CommonWealth", world.getSeed());
 			break;
 		case 8:
-			seed = world.GenerateCivSeed("The Texan Empire");
+			seed = CivFactory::GenerateCivSeed("The Texan Empire", world.getSeed());
 			break;
 		case 9:
-			seed = world.GenerateCivSeed("The Florida Tribes");
+			seed = CivFactory::GenerateCivSeed("The Florida Tribes", world.getSeed());
 			break;
 		case 10:
-			seed = world.GenerateCivSeed("The Ohio Tribunal");
+			seed = CivFactory::GenerateCivSeed("The Ohio Tribunal", world.getSeed());
 			break;
 		default:
-			seed = world.GenerateCivSeed("YOU MESSED UP");
+			seed = CivFactory::GenerateCivSeed("YOU MESSED UP", world.getSeed());
 			break;
 		}
 

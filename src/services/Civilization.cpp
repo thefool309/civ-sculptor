@@ -1,11 +1,18 @@
 #include "../include/Civilization.h"
-
+/// <summary>
+/// 
+/// </summary>
 void Civilization::MakeTurn() {
 	Utils::SetColor(93);
 	std::cout << '\n' << name << " has made their turn\n";
 	Utils::ResetColor();
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="type"></param>
+/// <param name="amount"></param>
 void Civilization::add_resource(ResourceType type, unsigned int amount) {
 	auto it = resource_map.find(type);
 
