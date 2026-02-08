@@ -16,6 +16,10 @@ Civ-Sculptor is a hybrid Python/C++ civilization simulation engine, designed for
 - **Terminal Visualization:** Interactive real-time display using rich and textual
 
 - **Flexible Logging:** capture and poll simulation output for analysis or UI
+
+- **(Long Term Feature) pureSim and learning modes:** have two modes for the c++ simulation one that runs a pure random sim (pureSim) The other will be piloted by ML or RL algorithms (learning)
+
+
 ## Use Cases
 
 - Generate civilizations with randomized traits.
