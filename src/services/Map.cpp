@@ -9,7 +9,7 @@
 /// <returns>Tile</returns>
 Tile Map::getTile(uint32_t x, uint32_t y) {
     
-    if(!(x > rows) || !(y > columns))
+    if(x < rows && y < columns)
         return tiles[x][y];
 }
 
