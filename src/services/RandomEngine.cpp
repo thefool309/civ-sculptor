@@ -5,7 +5,7 @@ float RandomEngine::generate_uniform_float(float min, float max) {
 	return dist(rng);
 }
 
-float RandomEngine::generate_uniform_int(int min, int max) {
+int RandomEngine::generate_uniform_int(int min, int max) {
 	std::uniform_int_distribution<int> dist(min, max);
 	return dist(rng);
 }
