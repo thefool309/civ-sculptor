@@ -6,6 +6,8 @@
 - C++ owns reality. Python observes reality.
 The only thing allowed to change reality is `SimulationApi`
 
+- Python should not hold onto references across ticks
+
 ### calculating map neighbors
 ```c++
 // (-1,-1) (-1,0) (-1,1)
