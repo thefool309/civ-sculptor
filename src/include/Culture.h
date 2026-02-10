@@ -1,39 +1,22 @@
 #pragma once
-/// <summary>
-///	An enum representing domains of decision.
-/// 
-/// TraitArchetype Definitions
+/// @file Culture.h
+/// @brief cultural trait system - archetypes, traits, and cultural summaries
+
+/// @brief domains of decision that traits can belong to
 ///
-///Social:
-///Governs how agents value, trust, and cooperate with one another.
+/// each trait is categorized under one archetype. the archetype determines
+/// which aspect of civilization behavior the trait primarily influences.
 ///
-///Authority :
-///	Governs how power is structured, justified, and obeyed.
-///
-///	Identity :
-///	Governs who is considered part of the group and under what conditions.
-///
-///	Knowledge :
-///	Governs how beliefs are formed, validated, and preserved.
-///
-///	Adaptation :
-///	Governs how behavior and institutions change in response to pressure.
-///
-///	Conflict :
-///	Governs thresholds, norms, and escalation of violence.
-///
-///	Economy :
-///	Governs how resources are produced, allocated, and incentivized.
-///
-///	Temporal :
-///	Governs how past and future are weighted in decision - making.
-///
-///	Environment :
-///	Governs interaction with, extraction from, and care for surroundings.
-///
-///	Meta :
-///	Governs persistence, inheritance, and mutability of traits themselves.
-/// </summary>
+/// - **Social**: how agents value, trust, and cooperate with one another
+/// - **Authority**: how power is structured, justified, and obeyed
+/// - **Identity**: who is considered part of the group and under what conditions
+/// - **Knowledge**: how beliefs are formed, validated, and preserved
+/// - **Adaptation**: how behavior and institutions change in response to pressure
+/// - **Conflict**: thresholds, norms, and escalation of violence
+/// - **Economic**: how resources are produced, allocated, and incentivized
+/// - **Temporal**: how past and future are weighted in decision-making
+/// - **Environmental**: interaction with, extraction from, and care for surroundings
+/// - **Meta**: persistence, inheritance, and mutability of traits themselves
 enum class TraitArchetype {
 	Social,
 	Authority,
@@ -46,52 +29,52 @@ enum class TraitArchetype {
 	Environmental,
 	Meta,
 
-	COUNT_TA
+	COUNT_TA ///< sentinel value, total number of archetypes
 };
-/// <summary>
-/// various figures decided from all the civs traits as a whole
-/// </summary>
+
+/// @brief aggregate statistics computed from all of a civilization's traits
+///
+/// these values summarize the overall cultural tendencies of a civilization
+/// and are used in decision-making calculations.
 struct CulturalSummary {
 
-	
-	// a civilizations preference for structured power and rank
-	// lower score means a flatter more egalitarian society
-	// higher score means a more authoritarian society
-	float avg_hierarchy_bias = 0;	
-	// a civilizations preference for group needs over individual needs
-	// lower score means a more individualistic attitude
-	// higher score means a more collectivist attitude
+	/// preference for structured power and rank.
+	/// lower = more egalitarian, higher = more authoritarian
+	float avg_hierarchy_bias = 0;
+	/// preference for group needs over individual needs.
+	/// lower = more individualistic, higher = more collectivist
 	float avg_collectivism = 0;
-	// how much a society takes risks in strategy, innovation, and expansion.
-	// lower score the society is more cautious
-	// higher score the society is more risky
+	/// willingness to take risks in strategy, innovation, and expansion.
+	/// lower = more cautious, higher = more risk-taking
 	float avg_risk_tolerance = 0;
-	// how capable a society is to adapt to changing conditions. Environmental, technological, cultural
-	// lower score the society is more resistant to changing conditions and struggles with them
-	// higher score the society handles changing conditions with understanding and patience
-	float avg_adaptability = 0;		// averages of all traits
+	/// capability to adapt to changing conditions (environmental, technological, cultural).
+	/// lower = resistant to change, higher = handles change well
+	float avg_adaptability = 0;
 
-	float variance_hierarchy = 0;	
-	float variance_collectivism = 0;
-	float variance_risk_tolerance = 0;
-	float variance_adaptability = 0;	// measured internal diversity
+	float variance_hierarchy = 0;       ///< internal diversity of hierarchy bias
+	float variance_collectivism = 0;    ///< internal diversity of collectivism
+	float variance_risk_tolerance = 0;  ///< internal diversity of risk tolerance
+	float variance_adaptability = 0;    ///< internal diversity of adaptability
 
-	int trait_count = 0;		// number of active traits
+	int trait_count = 0;  ///< number of active traits
 };
-/// <summary>
-/// a single trait of the society that is placed into a collection of traits, the four scores will effect how a civilization makes decisions.
-/// </summary>
-struct CulturalTrait {
-	std::string traitID;
-	std::string name;
-	TraitArchetype archetype;   
 
-	// hierarchy_bias is how authoritarian the trait is. If it promotes a strict vertical power structure then it has a high hierarchy_bias
-	float hierarchy_bias;       // continuous axes
-	// how much a trait prefers group needs over individual needs. 
+/// @brief a single cultural trait that influences civilization decision-making
+///
+/// traits are placed into a collection and their four axis scores collectively
+/// determine how a civilization behaves. each trait belongs to a TraitArchetype
+/// that categorizes its domain of influence.
+struct CulturalTrait {
+	std::string traitID;          ///< unique identifier for this trait
+	std::string name;             ///< human-readable trait name
+	TraitArchetype archetype;     ///< which domain this trait belongs to
+
+	/// how authoritarian the trait is. promotes strict vertical power = high value
+	float hierarchy_bias;
+	/// how much this trait prefers group needs over individual needs
 	float collectivism;
-	// how much a trait promotes risk taking either in expansion, innovation, or strategy
+	/// how much this trait promotes risk taking in expansion, innovation, or strategy
 	float risk_tolerance;
-	// traits ability to help the civ adjust to changing conditions
+	/// this trait's ability to help the civ adjust to changing conditions
 	float adaptability;
 };

@@ -1,3 +1,6 @@
+/// @file RandomEngine.cpp
+/// @brief RandomEngine method implementations
+
 #include "../include/RandomEngine.h"
 
 float RandomEngine::generate_uniform_float(float min, float max) {

@@ -1,3 +1,6 @@
+/// @file Simulation.cpp
+/// @brief Simulation loop and civilization generation implementations
+
 #include "Simulation.h"
 void Simulation::Generate3Civs() {
 	for (int i = 0; i < 3; i++) {
@@ -17,12 +20,12 @@ void Simulation::Generate3Civs() {
 			break;
 		}
 
-		
+
 		Civilization newCiv = CivFactory::CreateCivilization(seed);
-		
+
 		civs.insert(std::pair<std::string, Civilization>(newCiv.get_name(), newCiv));
 
-		
+
 		std::cout << newCiv.get_name() << " created!!!\n";
 	}
 }
@@ -50,19 +53,17 @@ void Simulation::Generate5Civs() {
 			break;
 		}
 
-		
+
 		Civilization newCiv = CivFactory::CreateCivilization(seed);
-		
+
 		civs.insert(std::pair<std::string, Civilization>(newCiv.get_name(), newCiv));
 
-		
+
 		std::cout << newCiv.get_name() << " created!!!\n";
-		
+
 	}
 }
-/// <summary>
-/// Generate 10 civilizations (some themed on fallout factions). Do this to create a group of civs to play in the sim for testing purposes.
-/// </summary>
+
 void Simulation::Generate10Civs() {
 	for (int i = 0; i < 10; i++) {
 		CivSeed seed = CivSeed(0ULL, "");
@@ -108,19 +109,14 @@ void Simulation::Generate10Civs() {
 		std::cout << newCiv.get_name() << " created!!!\n";
 	}
 }
-/// <summary>
-/// the core logic loop of the simulation. can be called in any increment as it takes a number of repititions and executes that many turns for every civilization 
-/// </summary>
-/// <param name="_ticksToLoop"> - number of ticks to loop for</param>
-/// <returns>SimTick = uint64_t</returns>
+
 SimTick Simulation::SimLoop(unsigned int _ticksToLoop) {
 	for (int i = 0; i < _ticksToLoop; i++) {
-		// TODO: Execute Sim Logic
 		// each civ takes their turn
 		for (auto& civ : civs) {	// the civs collection is a map, so it returns a std::pair<std::string, Civilization> the string is the name of the civ
 			civ.second.MakeTurn();	// civ.second is value (Civilization)
 		}
-		
+
 		std::cout << "End of Tick " << world.time.current_tick << '\n';
 
 		// advance to next tick

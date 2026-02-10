@@ -1,3 +1,6 @@
+/// @file python_bindings.cpp
+/// @brief pybind11 bindings exposing SimulationApi to python
+
 #include <pybind11/pybind11.h>
 #include <pybind11/iostream.h> // Add this include at the top of the file
 #include "include/World.h"
@@ -9,34 +12,43 @@
 
 namespace py = pybind11;
 
-/// <summary>
-/// SimulationApi is an abstraction created to create python bindings to these c++ libraries. 
-/// </summary>
+/// @brief python-facing API wrapper around the Simulation engine
+///
+/// provides a simplified interface for controlling the simulation from python.
+/// handles cout redirection for log polling and supports both synchronous
+/// and asynchronous execution modes via std::thread.
 class SimulationApi {
 private:
-	Simulation sim;
-	CoutRedirect cout_redirect;
-	std::atomic<bool> runningSim{ false };
-	std::thread simThread;
+	Simulation sim;                    ///< the underlying simulation engine
+	CoutRedirect cout_redirect;        ///< captures cout output for python polling
+	std::atomic<bool> runningSim{ false }; ///< whether the sim is currently running
+	std::thread simThread;             ///< thread for async execution
 public:
+	/// @param seed rng seed for the world
+	/// @param name world name
 	SimulationApi(uint64_t seed, std::string name) : sim(WorldSeed(seed, name)) {}
+
+	/// @brief join any running sim thread on destruction
 	~SimulationApi() { join(); }
 
+	/// @brief take all captured cout output since last poll
+	/// @return captured log string
 	std::string poll_log() {
 		return cout_redirect.take();
 	}
 
+	/// @return whether the simulation is currently running
 	bool getRunningSim() { return runningSim.load(std::memory_order_acquire); }
 
-	/// <summary>
-	/// set the runningSim bool to the param value
-	/// </summary>
-	/// <param name="_running">value to set runningSim to</param>
+	/// @brief set the running state
+	/// @param _running value to set
 	void setRunningSim(bool _running) { runningSim.store(_running, std::memory_order_release); }
-	/// <summary>
-	/// The main python entrypoint to the simulation. will be used later for logic on running the simulation x amount of ticks at a time
-	/// </summary>
-	/// <param name="ticks"> - the number of ticks to progress the simulation</param>
+
+	/// @brief run the simulation synchronously for a number of ticks
+	///
+	/// generates 3 civs then runs the sim loop. this is the main python
+	/// entry point for simple synchronous execution.
+	/// @param ticks number of ticks to run
 	void startSimulation(uint64_t ticks) {
 		std::cout << "`startSimulation()` called!\n";
 		if (!runningSim) {
@@ -46,20 +58,18 @@ public:
 		sim.SimLoop(ticks);
 		setRunningSim(false); // done so toggle running sim off
 	}
-	/// <summary>
-	/// Generates 3 civilizataions for the simulation. Asynchronous function using member field std::thread simThread.
-	/// </summary>
+
+	/// @brief generate 3 civilizations asynchronously
 	void generate3Civs() {
 		if(simThread.joinable())
 			join(); // join thread if it hasn't been joined already
 		simThread = std::thread([this]() {
 			sim.Generate3Civs();
 			});
-		
+
 	}
-	/// <summary>
-	/// Generates 5 civilizataions for the simulation. Asynchronous function using member field std::thread simThread.
-	/// </summary>
+
+	/// @brief generate 5 civilizations asynchronously
 	void generate5Civs() {
 		if (simThread.joinable())
 			join();
@@ -67,9 +77,8 @@ public:
 			sim.Generate5Civs();
 			});
 	}
-	/// <summary>
-	/// Generates 10 civilizataions for the simulation. Asynchronous function using member field std::thread simThread.
-	/// </summary>
+
+	/// @brief generate 10 civilizations asynchronously
 	void generate10Civs() {
 		if (simThread.joinable())
 			join();
@@ -77,10 +86,12 @@ public:
 			sim.Generate10Civs();
 			});
 	}
-	/// <summary>
-	///	starts the simulation for `ticks` number of ticks on a seperate thread
-	/// </summary>
-	/// <param name="ticks"> - the number of ticks to run the simulation for</param>
+
+	/// @brief start the simulation asynchronously on a separate thread
+	///
+	/// uses an RAII guard to ensure the running flag is cleared even if
+	/// the sim loop throws or exits early.
+	/// @param ticks number of ticks to run
 	void startSimulationAsync(uint64_t ticks) {
 		if (runningSim) return;
 		if(simThread.joinable())
@@ -97,14 +108,13 @@ public:
 				~Guard() { flag.store(false, std::memory_order_release); }
 			} guard{runningSim};
 
-			
+
 			sim.SimLoop(ticks);
 			setRunningSim(false);
 			});
 	}
-	/// <summary>
-	/// Joins running threads
-	/// </summary>
+
+	/// @brief join the sim thread if it's still running
 	void join() {
 		if (simThread.joinable()) {
 			simThread.join();
