@@ -1,3 +1,6 @@
+/// @file World.cpp
+/// @brief World seed serialization and deserialization
+
 #include "../include/World.h"
 #include "../include/Const.h"
 
