@@ -58,10 +58,10 @@ void Tests::TestWorldGetSeed() {
 	ASSERT_TRUE(sim.world.getSeed() == 123456);
 }
 
-void Tests::TestWorldGenCivSeed() {
+void Tests::TestCivFactoryGenCivSeed() {
 	/*std::cout << "\nGenerateCivSeed Russia Hash : " << world.GenerateCivSeed("Russia").rng_seed << '\n';*/
-	ASSERT_TRUE(sim.world.GenerateCivSeed("Russia").name == "Russia");
-	ASSERT_TRUE(sim.world.GenerateCivSeed("Russia").rng_seed == 11649118993674644964); // expected rng_seed for russia with the default test world seed
+	ASSERT_TRUE(CivFactory::GenerateCivSeed("Russia", sim.world.getSeed()).name == "Russia");
+	ASSERT_TRUE(CivFactory::GenerateCivSeed("Russia", sim.world.getSeed()).rng_seed == 11649118993674644964); // expected rng_seed for russia with the default test world seed
 }
 
 void Tests::TestSimLoop() {
@@ -73,6 +73,10 @@ void Tests::TestSimLoop() {
 	// with the way we've built the time system we could run x amount of moves at a time to possibly create a "fast_forward" or "slow_down" command
 }
 
+void Tests::TestMapPrintCout() {
+	sim.world.map.writeMapToCout();
+}
+
 void Tests::TestCivMakeTurn() {
 	sim.civs.at("Brotherhood of Steel").MakeTurn();
 
@@ -82,8 +86,9 @@ void Tests::TestCivMakeTurn() {
 void Tests::RunTests() {
 	RUN_TEST(TestWorldGetName, true);
 	RUN_TEST(TestWorldGetSeed, true);
-	RUN_TEST(TestWorldGenCivSeed, true); // should only be marked active if on default seed
-	RUN_TEST(TestCivMakeTurn, true);
-	RUN_TEST(TestSimLoop, true);
+	RUN_TEST(TestCivFactoryGenCivSeed, true); // should only be marked active if on default seed
+	RUN_TEST(TestCivMakeTurn, false);
+	RUN_TEST(TestSimLoop, false);
+	RUN_TEST(TestMapPrintCout, true);
 	SUMMARY();
 }

@@ -1,13 +1,18 @@
 #pragma once
 
 #include <vector>
+#include <thread>
+#include <mutex>
 #include "Tile.h"
 #include "RandomEngine.h"
+
 
 class Map {
 	std::vector<std::vector<Tile>> tiles;
 	int rows = Const::MAP_HEIGHT; //y
 	int columns = Const::MAP_WIDTH; //x
+	std::thread mapThread;
+	std::mutex mapMootex;
 public:
 	Map() {
 		// generate blank map
@@ -26,10 +31,17 @@ public:
 		rows = tiles.size();
 		columns = tiles[0].size();
 	}
-
+	~Map() {
+		if(mapThread.joinable())
+			mapThread.join();
+	}
 	Tile getTile(uint32_t x, uint32_t y);
 
 	std::vector<Tile*>& getNeighbors(Tile& tile);
 
-	void generateMapTiles(RandomEngine rng);
+	void generateMapTiles(RandomEngine& rng);
+
+	void writeMapToCout();
+
+	void visualizeMapInTextFile(const char* _filepath);
 };

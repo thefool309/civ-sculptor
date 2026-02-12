@@ -21,6 +21,7 @@ enum class TerrainType : uint8_t {
 struct Tile {
 	uint32_t x;
 	uint32_t y;
+    bool beenSet = false;
 
 	std::vector<Tile*> neighbors;
 	std::unordered_map<ResourceType, std::queue<ResourceDeposit>> deposits;

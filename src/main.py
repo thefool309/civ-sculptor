@@ -58,6 +58,9 @@ class CivSculptorSim(App):
 
         self.step1Button = Button("Step 1", classes="button")
         self.step3Button = Button("Step 3", classes="button")
+        self.step10Button = Button("Step 10", classes="button")
+        self.step100button = Button("Step 100", classes="button")
+        self.step1000button = Button("Step 1000", classes="button")
         self.generate3CivsButton = Button("Gen 3 Civ", classes="button", id="gen-civs-button3")
         self.generate5CivsButton = Button("Gen 5 Civ", classes="button", id="gen-civs-button5")
         self.generate10CivsButton = Button("Gen 10 Civ", classes="button", id="gen-civs-button10")
@@ -91,23 +94,34 @@ class CivSculptorSim(App):
             self.log_widget.log(out)
 
     def on_button_pressed(self, event):
-        if event.button.label == "Gen 3 Civ":
-            self.sim.generate3Civs()
-        elif event.button.label == "Gen 5 Civ":
-            self.sim.generate5Civs()
-        elif event.button.label == "Gen 10 Civ":
-            self.sim.generate10Civs()
-        elif event.button.label == "Step 1":
-            self.log_widget.log("Starting sim!!!")
-            self.sim.startSimulationAsync(1)
-        elif event.button.label == "Step 3":
-            self.log_widget.log("Starting sim!!!")
-            self.sim.startSimulationAsync(3)
-        elif event.button.label == "Nonsense":
-            self.log_widget.log("UwU OwO :3 >^w^<")
-        else:
-            self.log_widget.log("Exiting Program")
-            self.exit("Bye ;-; we'll miss you!")
+        match event.button.label:
+            case "Gen 3 Civ":
+                self.log_widget.log("generating first 3 civs...")
+                self.sim.generate3Civs()
+            case "Gen 5 Civ":
+                self.log_widget.log("generating first 5 civs...")
+                self.sim.generate5Civs()
+            case "Gen 10 Civ":
+                self.log_widget.log("generating all 10 civs...")
+                self.sim.generate10Civs()
+            case "Step 1":
+                self.log_widget.log("Starting Simulation!!!")
+                self.sim.startSimulationAsync(1)
+            case "Step 3":
+                self.log_widget.log("Starting Simulation!!!")
+                self.sim.startSimulationAsync(3)
+            case "Step 10":
+                self.log_widget.log("Starting Simulation!!!")
+                self.sim.startSimulationAsync(10)
+            case "Step 100":
+                self.log_widget.log("Starting Simulation!!!")
+                self.sim.startSimulationAsync(100)
+            case "Step 1000":
+                self.log_widget.log("Starting Simulation!!!")
+                self.sim.startSimulationAsync(1000)
+            case _:
+                self.exit("Bye!")
+
 
 
 

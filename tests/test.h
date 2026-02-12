@@ -54,12 +54,14 @@ public:
 	/// Test `world::GenCivSeed()`
 	/// this one is a special case because it can change from the default. 
 	/// </summary>
-	void TestWorldGenCivSeed();
+	void TestCivFactoryGenCivSeed();
 
 	/// <summary>
 	/// Test how the SimTime behaves in relation to running the SimLoop and ensure persistance between calls to SimLoop
 	/// </summary>
 	void TestSimLoop();
+
+	void TestMapPrintCout();
 
 	void TestCivMakeTurn();
 

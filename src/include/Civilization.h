@@ -1,18 +1,16 @@
 #pragma once
-
+#include <iostream>
 #include <string>
 #include <unordered_map>
 #include "RandomEngine.h"
 #include "Resources.h"
-#pragma once
-#include <iostream>
 #include "Culture.h"
 #include "Utils.h"
 
-
+using CivId = uint8_t;
 
 class Civilization {
-	std::string civID;
+	CivId civID;
 	std::string name = "Testonia";
 	bool hadTurnThisTick = false;
 	long population = 2;
@@ -24,7 +22,7 @@ class Civilization {
 	CivSeed seed;
 
 public:
-	Civilization(const std::string& _civID, const std::string& _name, CivSeed _seed) : civID(_civID), name(_name), seed(_seed), rng(_seed.rng_seed) {
+	Civilization(CivId _civID, const std::string& _name, CivSeed _seed) : civID(_civID), name(_name), seed(_seed), rng(_seed.rng_seed) {
 		population = rng.generate_uniform_int(1000, 100000);
 		resource_map.insert(std::pair<ResourceType, Resources>(ResourceType::Gold, Resources(ResourceType::Gold, rng.generate_uniform_int(0, 250))));
 		std::cout << "The amount of " << Utils::ConvertResourceTypeToStringLiteral(ResourceType::Gold) << " generated for " << name << " is " << resource_map.at(ResourceType::Gold).amount << '\n';
@@ -36,7 +34,7 @@ public:
 		std::cout << "The amount of " << Utils::ConvertResourceTypeToStringLiteral(ResourceType::Wood) << " generated for " << name << " is " << resource_map.at(ResourceType::Wood).amount << '\n';
 	}
 
-	Civilization(const std::string& _civID, const std::string& _name, CivSeed _seed, const unsigned int& _pop, const std::unordered_map<ResourceType, Resources>& _resources)
+	Civilization(CivId _civID, const std::string& _name, CivSeed _seed, const unsigned int& _pop, const std::unordered_map<ResourceType, Resources>& _resources)
 		: civID(_civID), name(_name), seed(_seed), rng(_seed.rng_seed), population(_pop), resource_map(_resources) {
 	}
 

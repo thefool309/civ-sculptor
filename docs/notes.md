@@ -1,5 +1,11 @@
 # Notes
 ## Technical
+
+### Rules
+
+- C++ owns reality. Python observes reality.
+The only thing allowed to change reality is `SimulationApi`
+
 ### calculating map neighbors
 ```c++
 // (-1,-1) (-1,0) (-1,1)

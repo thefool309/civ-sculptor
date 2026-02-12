@@ -24,7 +24,9 @@ public:
 
   float generate_uniform_float(float min = 0.0, float max = 1.0);
 
-  float generate_uniform_int(int min, int max);
+  int generate_uniform_int(int min, int max);
+
+  std::mt19937 get_mt19937() const { return rng; }
 
   template <typename Enum> Enum generateRandomEnum(int count);
 };

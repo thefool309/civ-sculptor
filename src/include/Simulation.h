@@ -15,12 +15,12 @@ private:
 public:
 	World world;
 	std::unordered_map<std::string, Civilization> civs;
-	RandomEngine globalRandEng;
-	Map worldMap;
 	
-	Simulation(WorldSeed _seed) : world(_seed), globalRandEng(_seed.rng_seed) {
-		worldMap.generateMapTiles(globalRandEng);
+	
+	Simulation(WorldSeed _seed) : world(_seed) {
+		world.map.generateMapTiles(world.globalRandEng);
 	}
+	
 
 	void Generate3Civs();
 
