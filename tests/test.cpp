@@ -1,3 +1,6 @@
+/// @file test.cpp
+/// @brief test implementations and main test harness entry point
+
 #include <stdio.h>
 #include <iostream>
 #include <unordered_map>
@@ -10,7 +13,7 @@
 int main() {
 	printf("Hello world I'm a test harness! :3\n\n");
 	Tests tests;
-	
+
 	tests.RunTests();
 }
 
@@ -28,26 +31,26 @@ void TestFramework::Summary() {
 	Utils::ResetColor();
 }
 template<typename Callable>
-void TestFramework::InvokeTest(Callable&& fn) { 
+void TestFramework::InvokeTest(Callable&& fn) {
 		try {
-			std::invoke(std::forward<Callable>(fn)); 
-			Utils::SetColor(92); 
-			std::cout << "PASS\n"; 
-			Utils::ResetColor(); 
-			++g_tests_passed; 
-		} 
+			std::invoke(std::forward<Callable>(fn));
+			Utils::SetColor(92);
+			std::cout << "PASS\n";
+			Utils::ResetColor();
+			++g_tests_passed;
+		}
 		catch (std::exception& e) {
-			Utils::SetColor(31); 
-			std::cout << "FAIL: " << e.what() << "\n"; 
-			Utils::ResetColor(); 
-			++g_tests_failed; 
-		} 
+			Utils::SetColor(31);
+			std::cout << "FAIL: " << e.what() << "\n";
+			Utils::ResetColor();
+			++g_tests_failed;
+		}
 		catch (...) {
-			Utils::SetColor(31); 
-			std::cout << "FAIL: Unknown Exception\n"; 
-			Utils::ResetColor(); 
-			++g_tests_failed; 
-		} 
+			Utils::SetColor(31);
+			std::cout << "FAIL: Unknown Exception\n";
+			Utils::ResetColor();
+			++g_tests_failed;
+		}
 }
 
 void Tests::TestWorldGetName() {
