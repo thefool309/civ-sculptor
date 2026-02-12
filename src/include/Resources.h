@@ -10,14 +10,14 @@
 /// backed by uint8_t for compact storage. COUNT_RT is used as a sentinel
 /// to track the total number of resource types.
 enum class ResourceType : uint8_t {
-	Food,
-	Water,
-	Wood,
-	Stone,
-	Metal,
-	Gold,
-	Oil,
-	NuclearMat,
+  Food,
+  Water,
+  Wood,
+  Stone,
+  Metal,
+  Gold,
+  Oil,
+  NuclearMat,
 
 	COUNT_RT ///< sentinel value, total number of resource types
 };

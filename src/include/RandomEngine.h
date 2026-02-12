@@ -4,6 +4,7 @@
 
 #include <random>
 #include <optional>
+#include <random>
 
 /// @brief placeholder biome enum for CivSeed (unused currently)
 enum Biome {
@@ -32,7 +33,7 @@ struct CivSeed {
 /// either the world seed or a civilization-specific seed for reproducibility.
 class RandomEngine {
 private:
-	std::mt19937 rng;
+  std::mt19937 rng;
 
 public:
 	/// @param seed initial seed for the mersenne twister

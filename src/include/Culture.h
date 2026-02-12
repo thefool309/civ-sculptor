@@ -18,16 +18,16 @@
 /// - **Environmental**: interaction with, extraction from, and care for surroundings
 /// - **Meta**: persistence, inheritance, and mutability of traits themselves
 enum class TraitArchetype {
-	Social,
-	Authority,
-	Identity,
-	Knowledge,
-	Adaptation,
-	Conflict,
-	Economic,
-	Temporal,
-	Environmental,
-	Meta,
+  Social,
+  Authority,
+  Identity,
+  Knowledge,
+  Adaptation,
+  Conflict,
+  Economic,
+  Temporal,
+  Environmental,
+  Meta,
 
 	COUNT_TA ///< sentinel value, total number of archetypes
 };

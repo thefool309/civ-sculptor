@@ -6,9 +6,14 @@
 #include "include/World.h"
 #include "include/Civilization.h"
 #include "CoutRedirect.h"
+#include "include/World.h"
 #include <Simulation.h>
-#include <iostream>
 #include <atomic>
+#include <iostream>
+#include <pybind11/iostream.h> // Add this include at the top of the file
+#include <pybind11/pybind11.h>
+
+#include <thread>
 
 namespace py = pybind11;
 
@@ -98,15 +103,14 @@ public:
 			join();
 		setRunningSim(true);
 
-
-		simThread = std::thread([this, ticks]() {
-			// RAII Guard
-			// just a small struct with a destructor that sets the flag to false
-			// that way if it goes out of scope it sets itself to false;
-			struct Guard {
-				std::atomic<bool>& flag;
-				~Guard() { flag.store(false, std::memory_order_release); }
-			} guard{runningSim};
+    simThread = std::thread([this, ticks]() {
+      // RAII Guard
+      // just a small struct with a destructor that sets the flag to false
+      // that way if it goes out of scope it sets itself to false;
+      struct Guard {
+        std::atomic<bool> &flag;
+        ~Guard() { flag.store(false, std::memory_order_release); }
+      } guard{runningSim};
 
 
 			sim.SimLoop(ticks);
